@@ -2,8 +2,8 @@ public class Mapa {
     //Clase que representa el terreno donde se mueven las hormigas
 
     //CONSTANTES
-    public static final int ancho = 5;
-    public static final int alto = 5;
+    public static final int ancho = 10;
+    public static final int alto = 10;
     public static final char vacio = '-';
     public static final char hormigero = 'H';
 
@@ -44,6 +44,6 @@ public class Mapa {
         }
     }
 
-    //public void prepararMapa(HashMap<String, Hormiga> hormigas) para continuar pasar al bloque de las hormigas
+    //  public void prepararMapa(HashMap<String, Hormiga> hormigas) para continuar pasar al bloque de las hormigas
 
 }
