@@ -1,20 +1,20 @@
 public enum TipoHormiga {
-    OBRERA("O","Obrera"),
-    GUERRERA("G","Guerrera"),
-    REINA("R","Reina");
+    OBRERA('O',"Obrera"),
+    GUERRERA('G',"Guerrera"),
+    REINA('R',"Reina");
 
     //CONSTANTES
-    private final String simbolo;
+    private final char simbolo;
     private final String nombre;
 
     //CONSTRUCTOR
-    TipoHormiga(String simbolo, String nombre) {
+    TipoHormiga(char simbolo, String nombre) {
         this.simbolo = simbolo;
         this.nombre = nombre;
     }
 
     //METODOS
-    public String getSimbolo() {
+    public char getSimbolo() {
         return simbolo;
     }
 

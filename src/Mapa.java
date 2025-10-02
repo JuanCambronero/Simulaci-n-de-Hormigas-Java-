@@ -1,9 +1,11 @@
+import java.util.HashMap;
+
 public class Mapa {
     //Clase que representa el terreno donde se mueven las hormigas
 
     //CONSTANTES
-    public static final int ancho = 10;
-    public static final int alto = 10;
+    public static final int ancho = 5;
+    public static final int alto = 5;
     public static final char vacio = '-';
     public static final char hormigero = 'H';
 
@@ -42,8 +44,30 @@ public class Mapa {
             }
             System.out.println();
         }
+
     }
 
-    //  public void prepararMapa(HashMap<String, Hormiga> hormigas) para continuar pasar al bloque de las hormigas
+    public void prepararMapa(HashMap<String, Hormiga> hormigas){
+        //1º LLenar de vacio
+        for (int i = 0; i < ancho; i++) {
+            for (int j = 0; j < alto; j++) {
+                mapa[i][j] = vacio;
+            }
+            System.out.println();
+        }
+        //2º Colocar las hormigas
+        for (String clave : hormigas.keySet()) {
+            Hormiga hormigaColocar = hormigas.get(clave);
+            int x = hormigaColocar.getPosicion().getX();
+            int y = hormigaColocar.getPosicion().getY();
+            mapa[x][y] = hormigaColocar.getTipo().getSimbolo();
+        }
+        //3º Colocar el hormigero
+        int centroAncho = ancho / 2;//Centro de la anchura
+        int centroAlto = alto / 2;//Centro del alto
+        mapa[centroAlto][centroAncho] = hormigero;//Colocar el hormiguero en el mapa
+
+
+    }
 
 }
