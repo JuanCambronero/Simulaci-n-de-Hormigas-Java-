@@ -25,6 +25,8 @@ public class SimuladorHormigas {
     }
 
 
+
+
     //METODOS
     //Metodo para genererar hormigas obreras -
     public void generarObreras(){
@@ -45,6 +47,59 @@ public class SimuladorHormigas {
 
         }
     }
+
+    public void ejecutar(){
+        generarObreras();
+        for (int i = 0; i < hormigas.size(); i++) {
+            Hormiga hormiga = hormigas.get(i);
+            hormiga.start();
+        }
+        actualizarVisualizacion();
+
+    }
+
+    public void detenerSimulacion(){
+        simulacionActiva = false;
+        for (int i = 0; i < numObreras; i++) {
+            hormigas.get(hormigas.get(i).getIdHormiga()).detener();
+        }
+    }
+
+    public void actualizarVisualizacion(){
+        while (!simulacionActiva){
+            moverHormigaTodasLasHormigas();
+           mapa.mostarMapa();
+        }
+    }
+
+    private void moverHormigaAleatoriamente(Hormiga hormiga) {
+        int[][] direcciones = {{-1,0},{1,0},{0,-1},{0,1}};
+        int[] dir = direcciones[new Random().nextInt(direcciones.length)];
+
+        Posicion nueva = hormiga.getPosicion().mover(dir[0], dir[1]);
+
+        // Verifica que esté dentro del mapa
+        if (mapa.dentroLimites(nueva)) {
+            hormiga.setPosicion(nueva);
+        }
+    }
+
+    private synchronized void moverHormigaTodasLasHormigas(){
+        for(Hormiga hormiga : hormigas.values()){
+            if(hormiga.isActivo()){
+                moverHormigaAleatoriamente(hormiga);
+            }
+        }
+    }
+
+    private void limpiarConsola(){
+        System.out.println();
+        System.out.println();
+        System.out.println();
+    }
+
+
+
 
 
 

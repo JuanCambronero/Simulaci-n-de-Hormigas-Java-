@@ -1,8 +1,10 @@
 import java.util.HashMap;
+import java.util.Random;
 
 public class main {
     public static void main(String[] args) {
         Mapa mapa = new Mapa();
+
 
         // Crear hormigas
         Hormiga h1 = new HormigaObrera("H1", TipoHormiga.OBRERA, new Posicion(0, 0));
@@ -15,8 +17,6 @@ public class main {
         hormigas.put(h2.getIdHormiga(), h2);
         hormigas.put(h3.getIdHormiga(), h3);
 
-        // Preparar e imprimir el mapa
-        mapa.prepararMapa(hormigas);
-        mapa.mostarMapa();
+
     }
 }

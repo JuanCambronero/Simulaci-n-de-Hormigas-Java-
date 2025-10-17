@@ -13,7 +13,7 @@ public class Mapa {
     private final char[][] mapa;
     private final Posicion hormiguero;
 
-    //CONSTRUCTO
+    //CONSTRUCTO - 0(n)
     public Mapa() {
         mapa = new char[ancho][alto];   //Crear matriz con el tamaño del mapa
         for (int i = 0; i < ancho; i++) { //Rellenar el mapa con vacio
@@ -66,7 +66,5 @@ public class Mapa {
         int centroAncho = ancho / 2;//Centro de la anchura
         int centroAlto = alto / 2;//Centro del alto
         mapa[centroAlto][centroAncho] = hormigero;//Colocar el hormiguero en el mapa
-
-
     }
 }
