@@ -20,7 +20,7 @@ public class SimuladorHormigas {
         this.random = random;
         this.mapa = mapa;
         this.hormigas = hormigas;
-        this.simulacionActiva = simulacionActiva; // ✅ Usar el parámetro
+        this.simulacionActiva = simulacionActiva;
     }
 
     //METODOS
@@ -46,20 +46,19 @@ public class SimuladorHormigas {
 
     public void ejecutar(){
         generarObreras();
-        simulacionActiva = true; // ✅ Activar la simulación
+        simulacionActiva = true;
 
-        // ✅ Iniciar todos los hilos de hormigas
+
         for (Hormiga hormiga : hormigas.values()) {
             hormiga.start();
         }
 
-        // ✅ Iniciar la visualización
+
         actualizarVisualizacion();
     }
 
     public void detenerSimulacion(){
         simulacionActiva = false;
-        // ✅ Detener todas las hormigas
         for (Hormiga hormiga : hormigas.values()) {
             hormiga.detener();
         }
