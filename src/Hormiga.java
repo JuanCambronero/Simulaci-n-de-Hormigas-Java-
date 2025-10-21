@@ -14,7 +14,13 @@ public abstract class Hormiga extends Thread {
         this.idHormiga = idHormiga;
         this.tipo = tipo;
         this.posicion = posicion;
+        this.activo = true;
+        this.random = new Random();
+        this.direcciones = new int[][]{
+                {-1, 0}, {1, 0}, {0, 1}, {0, -1}
+        };
     }
+
 
     //METODOS
 
@@ -58,7 +64,7 @@ public abstract class Hormiga extends Thread {
                 }
 
                 // Espera un poco antes del siguiente movimiento
-                Thread.sleep(1000,2000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 detener();
             }

@@ -22,11 +22,7 @@ public class Posicion {
     }
 
     public boolean dentroLimites(int maxX, int maxY) {
-        if ((x >= maxX || y >= maxY)  && (maxX > 0|| maxY > 0)){  //Comprobar si las coordenadas están en los límites del Mapa
-            return true;
-        }else{
-            return false;
-        }
+        return x >= 0 && x < maxX && y >= 0 && y < maxY;
     }
 
     public Posicion mover(int deltaX, int deltaY) {

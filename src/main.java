@@ -17,6 +17,8 @@ public class main {
         hormigas.put(h2.getIdHormiga(), h2);
         hormigas.put(h3.getIdHormiga(), h3);
 
+        SimuladorHormigas simuladorHormigas = new SimuladorHormigas(new Random(),mapa,hormigas, true);
+        simuladorHormigas.ejecutar();
 
     }
 }
