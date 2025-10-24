@@ -24,8 +24,8 @@ public class Mapa {
 
         int centroAncho = ancho / 2;//Centro de la anchura
         int centroAlto = alto / 2;//Centro del alto
-        mapa[centroAlto][centroAncho] = hormigero;//Colocar el hormiguero en el mapa
-        hormiguero = new Posicion(centroAncho, centroAlto);//Posicionar el hormiguero
+        this.mapa[centroAlto][centroAncho] = hormigero;//Colocar el hormiguero en el mapa
+        this.hormiguero = new Posicion(centroAncho, centroAlto);//Posicionar el hormiguero
     }
 
     //METODOS
@@ -40,7 +40,7 @@ public class Mapa {
     public synchronized void mostarMapa() {
         for (int i = 0; i < ancho; i++) {
             for (int j = 0; j < alto; j++) {
-                System.out.print(mapa[i][j]);//Imprimir el mapa recorriendo todas las posiciones de la matriz
+                System.out.print(this.mapa[i][j]);//Imprimir el mapa recorriendo todas las posiciones de la matriz
             }
             System.out.println();
         }
@@ -51,7 +51,7 @@ public class Mapa {
         //1º LLenar de vacio
         for (int i = 0; i < ancho; i++) {
             for (int j = 0; j < alto; j++) {
-                mapa[i][j] = vacio;
+                this.mapa[i][j] = vacio;
             }
             System.out.println();
         }
@@ -60,11 +60,11 @@ public class Mapa {
             Hormiga hormigaColocar = hormigas.get(clave);
             int x = hormigaColocar.getPosicion().getX();
             int y = hormigaColocar.getPosicion().getY();
-            mapa[x][y] = hormigaColocar.getTipo().getSimbolo();
+            this.mapa[x][y] = hormigaColocar.getTipo().getSimbolo();
         }
         //3º Colocar el hormigero
         int centroAncho = ancho / 2;//Centro de la anchura
         int centroAlto = alto / 2;//Centro del alto
-        mapa[centroAlto][centroAncho] = hormigero;//Colocar el hormiguero en el mapa
+        this.mapa[centroAlto][centroAncho] = hormigero;//Colocar el hormiguero en el mapa
     }
 }

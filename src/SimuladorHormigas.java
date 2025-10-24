@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class SimuladorHormigas {
     //ESTATICOS
-    public static final int numObreras = 5;
+    public static final int numObreras = 3;
     public static final int intervaloActualizacion = 1000;
     private static final int[][] direcciones = {
             {-1,0},{1,0},{0,1},{0,-1}
@@ -17,10 +17,10 @@ public class SimuladorHormigas {
 
     //CONSTRUCTORES
     public SimuladorHormigas(Random random, Mapa mapa, HashMap<String, Hormiga> hormigas, boolean simulacionActiva) {
-        this.random = random;
-        this.mapa = mapa;
-        this.hormigas = hormigas;
-        this.simulacionActiva = simulacionActiva;
+        this.random = new Random();
+        this.mapa = new Mapa();
+        this.hormigas = new HashMap<>();
+        this.simulacionActiva = false;
     }
 
     //METODOS
@@ -33,6 +33,7 @@ public class SimuladorHormigas {
             do {
                 x = random.nextInt(5);
                 y = random.nextInt(5);
+
             } while (!mapa.dentroLimites(new Posicion(x,y)));
 
             //Crear el objeto de la hormiga
@@ -45,14 +46,13 @@ public class SimuladorHormigas {
     }
 
     public void ejecutar(){
-        generarObreras();
         simulacionActiva = true;
 
+        generarObreras();
 
         for (Hormiga hormiga : hormigas.values()) {
             hormiga.start();
         }
-
 
         actualizarVisualizacion();
     }
@@ -68,6 +68,7 @@ public class SimuladorHormigas {
         while (simulacionActiva){
             try {
                 limpiarConsola();
+                moverHormigaAleatoriamente(hormigas.get(hormigas.keySet().iterator().next()));
                 mapa.prepararMapa(hormigas);
                 mapa.mostarMapa();
                 Thread.sleep(intervaloActualizacion);
@@ -77,23 +78,28 @@ public class SimuladorHormigas {
         }
     }
 
+    /**
+     * Este metodo mueve de forma aleatoria cada hormiga
+     * @param hormiga
+     */
     private void moverHormigaAleatoriamente(Hormiga hormiga) {
         int[] direccion = direcciones[random.nextInt(direcciones.length)];
         Posicion nueva = hormiga.getPosicion().mover(direccion[0], direccion[1]);
 
         // Verifica que esté dentro del mapa
-        if (mapa.dentroLimites(nueva)) {
+        if (mapa.dentroLimites(nueva) ) {
+            Posicion hormigero = mapa.getHormiguero();
             hormiga.setPosicion(nueva);
         }
     }
 
-    private synchronized void moverHormigaTodasLasHormigas(){
-        for(Hormiga hormiga : hormigas.values()){
-            if(hormiga.isActivo()){
-                moverHormigaAleatoriamente(hormiga);
-            }
-        }
-    }
+//    private synchronized void moverHormigaTodasLasHormigas(){
+//        for(Hormiga hormiga : hormigas.values()){
+//            if(hormiga.isActivo()){
+//                moverHormigaAleatoriamente(hormiga);
+//            }
+//        }
+//    }
 
     private void limpiarConsola(){
         for (int i = 0; i < 10; i++) {

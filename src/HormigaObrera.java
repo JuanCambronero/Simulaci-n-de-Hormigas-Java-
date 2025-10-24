@@ -3,8 +3,4 @@ public class HormigaObrera extends Hormiga {
         super(idHormiga, tipo, posicion);
     }
 
-    @Override
-    public void run() {
-        super.run();
-    }
 }

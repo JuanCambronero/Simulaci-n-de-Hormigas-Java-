@@ -1,5 +1,6 @@
 import java.util.Random;
 
+
 public abstract class Hormiga extends Thread {
     //ATRIBUTOS
     protected String idHormiga;
@@ -64,7 +65,7 @@ public abstract class Hormiga extends Thread {
                 }
 
                 // Espera un poco antes del siguiente movimiento
-                Thread.sleep(1000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 detener();
             }
