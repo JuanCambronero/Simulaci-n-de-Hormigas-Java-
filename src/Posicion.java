@@ -28,4 +28,6 @@ public class Posicion {
     public Posicion mover(int deltaX, int deltaY) {
         return new Posicion(x + deltaX, y + deltaY);//Crea la nueva posición a donde se mueve la hormiga sumando la posicion actual de ella con la del movimiento
     }
+
+
 }

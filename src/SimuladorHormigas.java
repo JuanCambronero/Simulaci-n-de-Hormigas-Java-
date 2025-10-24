@@ -25,25 +25,22 @@ public class SimuladorHormigas {
 
     //METODOS
     //Metodo para generar hormigas obreras
-    public void generarObreras(){
+    public void generarObreras() {
         for (int i = 0; i < numObreras; i++) {
-            int x;
-            int y;
-            //Comprobar si la hormiga esta dentro de los limites del mapa hasta que se genere dentro de el
+            Posicion pos;
             do {
-                x = random.nextInt(5);
-                y = random.nextInt(5);
+                int x = random.nextInt(5);
+                int y = random.nextInt(5);
+                pos = new Posicion(x, y);
+            } while (!mapa.dentroLimites(pos) && mapa.getHormiguero() == (pos));
 
-            } while (!mapa.dentroLimites(new Posicion(x,y)));
-
-            //Crear el objeto de la hormiga
-            Hormiga hormigaNueva = new HormigaObrera("O"+i, TipoHormiga.OBRERA, new Posicion(x,y));
-            //Añadir la hormiga nueva al diccionario(HashMap)
+            Hormiga hormigaNueva = new HormigaObrera("O" + i, TipoHormiga.OBRERA, pos);
             hormigas.put(hormigaNueva.getIdHormiga(), hormigaNueva);
         }
-        //Preparar el mapa con todas las hormigas
+
         mapa.prepararMapa(hormigas);
     }
+
 
     public void ejecutar(){
         simulacionActiva = true;
@@ -87,9 +84,12 @@ public class SimuladorHormigas {
         Posicion nueva = hormiga.getPosicion().mover(direccion[0], direccion[1]);
 
         // Verifica que esté dentro del mapa
-        if (mapa.dentroLimites(nueva) ) {
+        if (mapa.dentroLimites(nueva)) {
             Posicion hormigero = mapa.getHormiguero();
-            hormiga.setPosicion(nueva);
+            if(hormigero != nueva){
+                hormiga.setPosicion(nueva);
+            }
+
         }
     }
 
