@@ -24,31 +24,34 @@ public abstract class Hormiga extends Thread {
 
 
     //METODOS
-
+    //Este metodo recoge el id de la hormiga
     public String getIdHormiga() {
         return idHormiga;
     }
-
+    //Este metodo captura de que tipo es la hormiga
     public TipoHormiga getTipo() {
         return tipo;
     }
-
+    //Este metodo captura la posición actual de la hormiga
     public Posicion getPosicion() {
         return posicion;
     }
-
+    //Este metodo actualiza la posición de la hormiga
     public void setPosicion(Posicion nuevaPosicion) {
         this.posicion = nuevaPosicion;
     }
-
+    //Este metodo comprueba si el hilo esta activo
     public boolean isActivo() {
         return activo;
     }
-
+    //Este metodo detiene la ejecución del hilo
     public void detener(){
         activo = false;
     }
-
+    private boolean esHormiguero(Posicion pos, Posicion hormiguero) {
+        return pos.getX() == hormiguero.getX() && pos.getY() == hormiguero.getY();
+    }
+    //Metodo independiente del hilo
     @Override
     public void run() {
         while (isActivo()) {
@@ -59,13 +62,14 @@ public abstract class Hormiga extends Thread {
                 int dy = direcciones[direccion][1];
                 Posicion nuevaPos = posicion.mover(dx, dy);
 
+                Posicion hormiguero = new Posicion(Mapa.ancho/2, Mapa.alto/2);
                 // Verifica límites antes de moverse
-                if (nuevaPos.dentroLimites(Mapa.ancho, Mapa.alto)) {
+                if (nuevaPos.dentroLimites(Mapa.ancho, Mapa.alto) && !esHormiguero(nuevaPos, hormiguero)) {
                     setPosicion(nuevaPos);
                 }
 
                 // Espera un poco antes del siguiente movimiento
-                Thread.sleep(5000);
+                Thread.sleep(4000);
             } catch (InterruptedException e) {
                 detener();
             }

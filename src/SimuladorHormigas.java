@@ -4,7 +4,7 @@ import java.util.Random;
 public class SimuladorHormigas {
     //ESTATICOS
     public static final int numObreras = 3;
-    public static final int intervaloActualizacion = 1000;
+    public static final int intervaloActualizacion = 2000;
     private static final int[][] direcciones = {
             {-1,0},{1,0},{0,1},{0,-1}
     };
@@ -24,7 +24,7 @@ public class SimuladorHormigas {
     }
 
     //METODOS
-    //Metodo para generar hormigas obreras
+    //Metodo para generar hormigas obreras - 0(n) n = numero de obreras
     public void generarObreras() {
         for (int i = 0; i < numObreras; i++) {
             Posicion pos;
@@ -41,33 +41,50 @@ public class SimuladorHormigas {
         mapa.prepararMapa(hormigas);
     }
 
-
+    //Metodo para ejecutra la simulación - 0(n) n = numero de hormigas
     public void ejecutar(){
         simulacionActiva = true;
-
         generarObreras();
-
         for (Hormiga hormiga : hormigas.values()) {
             hormiga.start();
         }
-
         actualizarVisualizacion();
-    }
 
+    }
+    //Metodo para detener la simulación - 0(n) n = numero de hormigas
     public void detenerSimulacion(){
         simulacionActiva = false;
         for (Hormiga hormiga : hormigas.values()) {
             hormiga.detener();
         }
     }
+    //En construcción
+    //Método para mostrar estadísticas básicas - O(n)
+    public void mostrarEstadisticas() {
+        System.out.println("\n--- ESTADÍSTICAS ---");
 
+        int activas = 0;
+        for (Hormiga hormiga : hormigas.values()) {
+            if (hormiga.isActivo()) {
+                activas++;
+            }
+        }
+
+        System.out.println("Hormigas activas: " + activas + "/" + hormigas.size());
+        System.out.println("Hormiguero: " + mapa.getHormiguero());
+        System.out.println("Tiempo de actualización: " + intervaloActualizacion);
+        System.out.println("--------------------\n");
+    }
+
+
+    //Metodo para actualizar la vitsa de la simulación - 0(n) n = número de hormigas
     public void actualizarVisualizacion(){
         while (simulacionActiva){
             try {
                 limpiarConsola();
-                moverHormigaAleatoriamente(hormigas.get(hormigas.keySet().iterator().next()));
                 mapa.prepararMapa(hormigas);
                 mapa.mostarMapa();
+                mostrarEstadisticas();
                 Thread.sleep(intervaloActualizacion);
             } catch (InterruptedException e) {
                 simulacionActiva = false;
@@ -79,6 +96,7 @@ public class SimuladorHormigas {
      * Este metodo mueve de forma aleatoria cada hormiga
      * @param hormiga
      */
+    //Metodo para mover a las hormigas por el mapa - 0(1) ¿Metodo rebundante?
     private void moverHormigaAleatoriamente(Hormiga hormiga) {
         int[] direccion = direcciones[random.nextInt(direcciones.length)];
         Posicion nueva = hormiga.getPosicion().mover(direccion[0], direccion[1]);
@@ -100,9 +118,9 @@ public class SimuladorHormigas {
 //            }
 //        }
 //    }
-
+    //Metodo para limpiar la vista entre simulaciones - 0(1)
     private void limpiarConsola(){
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 4; i++) {
             System.out.println();
         }
     }

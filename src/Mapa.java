@@ -32,11 +32,12 @@ public class Mapa {
     public Posicion getHormiguero() {
         return hormiguero;
     }
-
+    //Desde este metodo se comprueba si la posición está dentro de los límites llamando al metodo de posicion
     public boolean dentroLimites(Posicion posicion) {
+
         return posicion.dentroLimites(ancho, alto);
     }
-
+    //Este metodo muestra el mapa por pantalla - O(n²)
     public synchronized void mostarMapa() {
         for (int i = 0; i < ancho; i++) {
             for (int j = 0; j < alto; j++) {
@@ -46,7 +47,7 @@ public class Mapa {
         }
 
     }
-
+    //Este metodo prepara el mapa para ser mostrado colacando cada hormiga y horigero en su posicion - O(n²)
     public void prepararMapa(HashMap<String, Hormiga> hormigas){
         //1º LLenar de vacio
         for (int i = 0; i < ancho; i++) {
