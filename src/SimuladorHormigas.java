@@ -111,13 +111,13 @@ public class SimuladorHormigas {
         }
     }
 
-//    private synchronized void moverHormigaTodasLasHormigas(){
-//        for(Hormiga hormiga : hormigas.values()){
-//            if(hormiga.isActivo()){
-//                moverHormigaAleatoriamente(hormiga);
-//            }
-//        }
-//    }
+  private synchronized void moverHormigaTodasLasHormigas(){
+        for(Hormiga hormiga : hormigas.values()){
+            if(hormiga.isActivo()){
+                moverHormigaAleatoriamente(hormiga);
+            }
+        }
+    }
     //Metodo para limpiar la vista entre simulaciones - 0(1)
     private void limpiarConsola(){
         for (int i = 0; i < 4; i++) {
