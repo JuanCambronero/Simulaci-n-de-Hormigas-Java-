@@ -18,9 +18,9 @@ public class Mapa {
 
     //CONSTANTES
     /** Ancho del mapa (número de columnas). */
-    public static final int ancho = 5;
+    public static final int ancho = 10;
     /** Alto del mapa (número de filas). */
-    public static final int alto = 5;
+    public static final int alto = 10;
     /** Carácter que representa una celda vacía. */
     public static final char vacio = '-';
     /** Carácter que representa el hormiguero. */

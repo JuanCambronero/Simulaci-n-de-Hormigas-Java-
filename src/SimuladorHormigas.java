@@ -14,7 +14,7 @@ import java.util.Random;
 public class SimuladorHormigas {
     //ESTATICOS
     /** Número de hormigas obreras generadas por la simulación */
-    public static final int numObreras = 3;
+    public static final int numObreras = 5;
     /** Intervalo de actualización visual (en milisegundos) */
     public static final int intervaloActualizacion = 2000;
     /** Posibles direcciones de movimiento (arriba, abajo, derecha, izquierda) */

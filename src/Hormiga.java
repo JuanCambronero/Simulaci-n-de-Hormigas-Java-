@@ -126,7 +126,7 @@ public abstract class Hormiga extends Thread {
                 }
 
                 // Espera un poco antes del siguiente movimiento
-                Thread.sleep(4000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 detener();
             }
